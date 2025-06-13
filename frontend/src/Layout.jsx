@@ -1,7 +1,7 @@
 // File: src/Layout.jsx
 
 import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, NavLink } from 'react-router-dom';
 
 function Layout({ children }) {
   // localStorage’de token var mı?
@@ -18,11 +18,11 @@ function Layout({ children }) {
   return (
     <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
       {/* Üst Navbar */}
-      <nav className="navbar navbar-dark bg-dark" style={{ height: '80px' }}>
+      <nav className="navbar navbar-light bg-white shadow-sm" style={{ height: '60px' }}>
         <div className="container-fluid d-flex align-items-center justify-content-between h-100">
           <div className="d-flex flex-column">
             <span className="navbar-brand fs-3 mb-0">NetGate</span>
-            <span className="text-white fs-6" style={{ marginTop: '-3px' }}>
+            <span className="text-body fs-6" style={{ marginTop: '-3px' }}>
               Hoş Geldiniz, Sistem Yöneticisi
             </span>
           </div>
@@ -34,62 +34,63 @@ function Layout({ children }) {
         <div className="row g-0 h-100">
           {/* Sol Menü */}
           <div
-            className="col-auto bg-light"
-            style={{ width: '220px', minHeight: 'calc(100vh - 80px)' }}
+            className="col-auto bg-light border-end"
+            style={{ width: '220px', minHeight: 'calc(100vh - 60px)' }}
           >
             <div className="p-3">
-              <h6 className="mb-3 text-uppercase text-secondary">Menü</h6>
+              <h6 className="px-3 pt-3 pb-2 text-muted text-uppercase small">Menü</h6>
               <ul className="nav flex-column">
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/dashboard">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/dashboard">
                     Ana Sayfa
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/logs">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/logs">
                     Log Yönetimi
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/updates">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/updates">
                     Güncellemeler
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/rules">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/rules">
                     Güvenlik Kuralları
-                  </Link>
+                  </NavLink>
                 </li>
 
                 {/* Kural Grupları */}
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/groups">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/groups">
                     Kural Grupları
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/reports">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/reports">
                     Raporlar
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/settings">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/settings">
                     Sistem Ayarları
-                  </Link>
+                  </NavLink>
                 </li>
 
                 {/* DNS Yönetimi */}
                 <li className="nav-item mb-1">
-                  <Link className="nav-link" to="/dns-management">
+                  <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/dns-management">
                     DNS Yönetimi
-                  </Link>
+                  </NavLink>
                 </li>
 
                 {/* Network alt menü */}
                 <li className="nav-item mb-1">
                   <div
-                    style={{ cursor: 'pointer', color: '#000', fontWeight: 'bold' }}
+                    className="nav-link"
+                    style={{ cursor: 'pointer' }}
                     onClick={toggleNetworkSubMenu}
                   >
                     Network {showNetworkSub ? '▼' : '▶'}
@@ -97,19 +98,19 @@ function Layout({ children }) {
                   {showNetworkSub && (
                     <ul className="nav flex-column ms-3 mt-1">
                       <li className="nav-item mb-1">
-                        <Link className="nav-link" to="/network">
+                        <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/network">
                           Interface Ayarları
-                        </Link>
+                        </NavLink>
                       </li>
                       <li className="nav-item mb-1">
-                        <Link className="nav-link" to="/nat">
+                        <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/nat">
                           NAT Ayarları
-                        </Link>
+                        </NavLink>
                       </li>
                       <li className="nav-item mb-1">
-                        <Link className="nav-link" to="/routes">
+                        <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} to="/routes">
                           Rota Yönetimi
-                        </Link>
+                        </NavLink>
                       </li>
                     </ul>
                   )}
